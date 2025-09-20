@@ -1,3 +1,7 @@
+---
+applyTo: "src/data/blog/**/*.md"
+---
+
 # Blog Authoring Instructions
 
 Purpose: Ensure consistent, high-quality technical articles for DevBites (home page features, About page narrative, deep-dive posts). These instructions guide AI + human authors.
