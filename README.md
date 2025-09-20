@@ -46,13 +46,6 @@ Additional custom fields can be added by extending the schema in `src/content.co
 - Tags index: `src/pages/tags/index.astro` & dynamic tag routes under `src/pages/tags/[tag]/`.
 - Archives: `src/pages/archives/`.
 
-## Key Utilities
-- `getSortedPosts.ts`: Ordering logic (usually date descending).
-- `postFilter.ts`: Filtering (e.g., draft exclusion, tag filtering).
-- `generateOgImages.ts`: Runtime OG image generation support.
-- `slugify.ts`: Consistent slug casing.
-- `getPostsByTag.ts`, `getUniqueTags.ts`: Tag operations.
-
 ## Development Workflow
 ```bash
 pnpm install          # Install dependencies
@@ -81,20 +74,18 @@ GitHub Actions workflow (`ci.yml`):
 - New UI blocks: place in `src/components/` (prefer composition over monolithic components).
 - Add search or other data features: create util modules under `src/utils/`.
 
-## Conventions
-- Commit style: Conventional Commits (e.g., `feat: add rate limiter article`).
-- Keep posts atomic: one core topic per file.
-- Optimize images; place heavy static assets under `public/`.
-- Avoid over-abstraction until patterns repeat (pragmatic scaling).
+## Licensing
+This project distinguishes between source code and written content.
 
-## Observability & Quality (Content Angle)
-When writing technical articles, prefer:
-- Root cause narratives (symptom → diagnosis → fix → hardening)
-- Failure modes (timeouts, contention, retries, partitioning issues)
-- Operational notes (monitoring, metrics, tracing) where relevant
+Code (site framework: components, layouts, utilities, build scripts): MIT License — see `LICENSE`.
 
-## License
-See `LICENSE` for reuse terms. Blog content may be adapted—credit appreciated.
+Content (original articles, `about` page text, narrative sections under `src/data/blog/**`): Creative Commons Attribution 4.0 International — see `CONTENT-LICENSE`.
 
----
-Focused. Practical. Durable engineering knowledge.
+Code snippets embedded inside blog posts are MIT unless explicitly noted otherwise in the post.
+
+Third-party assets (icons, fonts, upstream theme portions) retain their original licenses.
+
+If you reuse content, provide attribution with a link back to the original post or site homepage.
+
+## Theme
+Theme based on AstroPaper — made with ❤️ by [Sat Naing](https://satnaing.dev) • https://astro-paper.pages.dev/
