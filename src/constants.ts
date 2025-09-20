@@ -2,7 +2,6 @@ import type { Props } from "astro";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconRss from "@/assets/icons/IconRss.svg";
-import { SITE } from "@/config";
 
 interface Social {
   name: string;
