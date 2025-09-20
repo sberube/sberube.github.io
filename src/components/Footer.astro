@@ -18,9 +18,14 @@ const { noMarginTop = false } = Astro.props;
   >
     <Socials centered />
     <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
+      <!-- <span>Copyright &#169; {currentYear}</span>
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+      <span>All rights reserved.</span> -->
+      <span>Dev Bites &#169; {currentYear} by</span>
+      <a href="https://creativecommons.org">Jane Doe</a> is licensed under 
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+      <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1.5em;max-height:1.5em;margin-left: .2em;">
+      <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1.5em;max-height:1.5em;margin-left: .2em;">
     </div>
   </div>
 </footer>
