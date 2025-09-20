@@ -3,7 +3,7 @@ export const SITE = {
   author: "Simon Berube",
   profile: "https://linkedin.com/simonberube",
   desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "🍽️ Dev Bites",
+  title: "Dev Bites",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
