@@ -3,13 +3,13 @@ export const SITE = {
   author: "Simon Berube",
   profile: "https://linkedin.com/simonberube",
   desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "DevBites",
+  title: "devbites.info",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-  showArchives: true,
+  showArchives: false,
   showBackButton: true, // show back button in post detail
   editPost: {
     enabled: false,
