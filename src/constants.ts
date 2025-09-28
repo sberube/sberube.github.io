@@ -1,5 +1,6 @@
 import type { Props } from "astro";
 import IconBrandBlueSky from "@/assets/icons/IconBrandBluesky.svg";
+import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconMail from "@/assets/icons/IconMail.svg";
@@ -25,9 +26,9 @@ export const SOCIALS: Social[] = [
     icon: IconLinkedin,
   },
   {
-    name: "Bluesky",
+    name: "BlueSky",
     href: "https://bsky.app/profile/m1sterb.bsky.social/",
-    linkTitle: `Follow me on Bluesky`,
+    linkTitle: `Follow me on BlueSky`,
     icon: IconBrandBlueSky,
   },
   {
@@ -38,4 +39,29 @@ export const SOCIALS: Social[] = [
   },
 ] as const;
 
-export const SHARE_LINKS: Social[] = [] as const;
+export const SHARE_LINKS: Social[] = [
+  {
+    name: "X",
+    href: "https://x.com/intent/post?url=",
+    linkTitle: `Share this post on X`,
+    icon: IconBrandX,
+  },
+  {
+    name: "Mail",
+    href: "mailto:?subject=See%20this%20post&body=",
+    linkTitle: `Share this post via email`,
+    icon: IconMail,
+  },
+  {
+    name: "BlueSky",
+    href: "https://bsky.app/intent/compose?text=",
+    linkTitle: `Share this post on BlueSky`,
+    icon: IconBrandBlueSky,
+  },
+  {
+    name: 'LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=`,
+    linkTitle: `Share this post on LinkedIn`,
+    icon: IconLinkedin,
+  }
+] as const;
