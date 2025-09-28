@@ -2,19 +2,19 @@ export const SITE = {
   website: "https://devbites.info/", // replace this with your deployed domain
   author: "Simon Berube",
   profile: "https://linkedin.com/simonberube",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
+  desc: "News & deep dives on real-world .NET engineering: performance, resilience, DevOps, infrastructure as code, architecture, delivery craft.",
   title: "devbites.info",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
-  postPerPage: 4,
+  postPerPage: 6,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: false,
   showBackButton: true, // show back button in post detail
   editPost: {
     enabled: false,
     text: "Edit page",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    url: "https://github.com/sberube/sberube.github.io/edit/main/",
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"
