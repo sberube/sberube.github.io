@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  # Trigger the workflow every time you push to the `main` branch
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Code standards & build
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@v4
+      - name: "📦 Install, build, and upload your site output"
+        uses: withastro/action@v4
+      # - name: "📦 Install pnpm"
+      #   uses: pnpm/action-setup@v4
+      #   with:
+      #     version: 10.11.1
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: "pnpm"
+      # - name: "📦 Install dependencies"
+      #   run: pnpm install
+      # - name: "🔎 Lint code"
+      #   run: pnpm run lint
+      # - name: "👀 Checking code format"
+      #   run: pnpm run format:check
+      # - name: "🚀 Build the project"
+      #   run: pnpm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: "🚀 Deploy to GitHub Pages"
+        id: deployment
+        uses: actions/deploy-pages@v4
