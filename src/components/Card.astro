@@ -39,7 +39,7 @@ const headerProps = {
   <div class="mt-1 flex flex-wrap items-center gap-2 text-sm text-foreground/70">
     <Datetime {pubDatetime} {modDatetime} {timezone} />
     {readingMinutes && (
-      <span class="inline-flex items-center gap-1" aria-label={`${readingMinutes} minute read`}>
+      <span class="inline-flex items-center gap-2" aria-label={`${readingMinutes} minute read`}>
         <IconClock class="inline-block size-5 opacity-80" />
         <span>{readingMinutes}</span>
       </span>
