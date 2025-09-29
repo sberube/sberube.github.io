@@ -3,12 +3,17 @@ import { slugifyStr } from "@/utils/slugify";
 import type { CollectionEntry } from "astro:content";
 import { getPath } from "@/utils/getPath";
 import Datetime from "./Datetime.astro";
+import IconClock from "@/assets/icons/IconClock.svg";
+import IconHash from "@/assets/icons/IconHash.svg";
 
-export interface Props extends CollectionEntry<"blog"> {
-  variant?: "h2" | "h3";
+interface ExtraMetaProps {
+  readingMinutes?: number;
+  displayTags?: string[]; // already sliced / prepared upstream
 }
 
-const { variant = "h2", data, id, filePath } = Astro.props;
+export interface Props extends CollectionEntry<"blog">, ExtraMetaProps { variant?: "h2" | "h3" }
+
+const { variant = "h2", data, id, filePath, readingMinutes, displayTags = [] } = Astro.props as Props;
 
 const { title, description, pubDatetime, modDatetime, timezone } = data;
 
@@ -31,6 +36,29 @@ const headerProps = {
       )
     }
   </a>
-  <Datetime {pubDatetime} {modDatetime} {timezone} />
-  <p>{description}</p>
+  <div class="mt-1 flex flex-wrap items-center gap-2 text-sm text-foreground/70">
+    <Datetime {pubDatetime} {modDatetime} {timezone} />
+    {readingMinutes && (
+      <span class="inline-flex items-center gap-1" aria-label={`${readingMinutes} minute read`}>
+        <IconClock class="inline-block size-5 opacity-80" />
+        <span>{readingMinutes}</span>
+      </span>
+    )}
+  </div>
+  <p class="mt-1">{description}</p>
+  {displayTags.length > 0 && (
+    <ul class="mt-2 flex flex-wrap gap-1" aria-label="Tags">
+      {displayTags.map(tag => (
+        <li>
+          <a
+            href={`/tags/${tag}/`}
+            class="group inline-flex items-center gap-0.5 rounded bg-muted/40 px-2 py-0.5 text-[11px] font-medium tracking-wide uppercase text-foreground/70 transition-colors hover:bg-muted/60 dark:bg-muted/30 dark:hover:bg-muted/50"
+          >
+            <IconHash class="inline-block size-3.5 opacity-60 group-hover:opacity-90" />
+            <span>{tag}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
 </li>

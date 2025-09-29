@@ -7,6 +7,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
+import { render } from "astro:content";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
 import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
@@ -72,9 +73,11 @@ const { page } = Astro.props;
                           new Date(a.data.pubDatetime).getTime() / 1000
                         )
                     )
-                    .map(data => (
-                      <Card {...data} />
-                    ))}
+                    .map(async data => {
+                      const { remarkPluginFrontmatter } = await render(data);
+                      const displayTags = data.data.tags.slice(0, 2);
+                      return <Card {...data} readingMinutes={remarkPluginFrontmatter.minutesRead} displayTags={displayTags} />;
+                    })}
                 </ul>
               </div>
             ))}

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -10,13 +11,28 @@ import Hr from "@/components/Hr.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
+import { render } from "astro:content";
 import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+async function enrich(post: CollectionEntry<"blog">) {
+  const { remarkPluginFrontmatter } = await render(post);
+  return {
+    ...post,
+    readingMinutes: remarkPluginFrontmatter.minutesRead,
+    displayTags: post.data.tags.slice(0, 2),
+  };
+}
+
+const featuredPosts = await Promise.all(
+  sortedPosts.filter(({ data }) => data.featured).map(enrich)
+);
+const recentPosts = await Promise.all(
+  sortedPosts.filter(({ data }) => !data.featured).map(enrich)
+);
 ---
 
 <Layout>
@@ -33,7 +49,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
             <img
               src="/assets/me.jpg"
               alt="Portrait of Simon Berube"
-              class="w-full max-w-[22rem] rounded-md object-contain sm:h-48 sm:w-48 sm:rounded-full sm:object-cover sm:object-left border border-muted/40 shadow-sm bg-muted/30"
+              class="w-full max-w-[22rem] rounded-md object-contain sm:h-48 sm:w-48 sm:rounded-full sm:object-cover sm:object-left border border-muted/40 shadow-sm bg-muted/30 align-middle"
               width="192"
               height="192"
               loading="eager"
@@ -76,8 +92,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           <section id="featured" class="pt-12 pb-6">
             <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
             <ul>
-              {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
+              {featuredPosts.map(p => (
+                <Card variant="h3" {...p} readingMinutes={p.readingMinutes} displayTags={p.displayTags} />
               ))}
             </ul>
           </section>
@@ -92,8 +108,15 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
             {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+              (p, index) =>
+                index < SITE.postPerIndex && (
+                  <Card
+                    variant="h3"
+                    {...p}
+                    readingMinutes={p.readingMinutes}
+                    displayTags={p.displayTags}
+                  />
+                )
             )}
           </ul>
         </section>
