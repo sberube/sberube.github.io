@@ -12,6 +12,8 @@ tags:
 description: Implement fixed and per-partition rate limiting in .NET 9 with rejection handling, observability, and trade-offs.
 ---
 
+## Table of contents
+
 Rate limiting protects shared resources, constrains abusive or buggy clients, and smooths burst traffic. .NET 9 ships mature middleware abstractions over multiple limiter strategies so you can enforce fairness without building custom throttling infrastructure.
 
 > Goal: Demonstrate a production-leaning baseline you can extend—NOT just a “hello world” limiter.
