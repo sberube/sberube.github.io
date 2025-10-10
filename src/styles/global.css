@@ -63,6 +63,18 @@ html[data-theme="dark"] {
   @apply text-accent
 }
 
+/* Logo shadow utility */
+/* Use muted color as tint; mix with alpha for depth */
+.logo-shadow {
+  /* Lighter subtle glow: two layers only */
+  filter: drop-shadow(0 0 1.5px color-mix(in srgb, var(--color-muted) 55%, transparent))
+          drop-shadow(0 2px 6px color-mix(in srgb, var(--color-muted) 30%, rgba(0,0,0,0.20)));
+}
+html[data-theme="dark"] .logo-shadow {
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-muted) 50%, transparent))
+          drop-shadow(0 3px 8px color-mix(in srgb, var(--color-muted) 28%, rgba(0,0,0,0.35)));
+}
+
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
