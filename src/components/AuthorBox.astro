@@ -1,0 +1,28 @@
+---
+import { SITE } from "@/config";
+---
+<section class="mt-10 rounded-md border border-dashed border-muted/50 bg-muted/20 p-4 text-sm leading-snug dark:bg-muted/10">
+  <div class="flex items-start gap-4">
+    <img
+      src="/assets/me.jpg"
+      alt={`Author: ${SITE.author}`}
+      class="h-14 w-14 rounded-full object-cover object-left shadow-md shadow-black/15 dark:shadow-black/40"
+      width="56"
+      height="56"
+      loading="lazy"
+      decoding="async"
+    />
+    <div>
+      <p class="flex items-baseline gap-2 font-medium text-sm sm:text-base leading-tight">
+        <span class="text-[11px] uppercase tracking-wide text-accent/80 font-semibold">Written by</span>
+        <span class="inline-flex uppercase items-baseline font-semibold text-accent/90">{SITE.author}</span>
+      </p>
+      <p class="mt-2 text-sm opacity-80">
+        Software engineer with 15+ years designing Azure/.NET distributed systems: event-driven messaging, actor models, distributed architecture, throughput engineering and reliability design.
+      </p>
+      <p class="mt-2 text-xs opacity-70">
+        <a href="/about" class="underline decoration-dotted underline-offset-4">More about me</a>
+      </p>
+    </div>
+  </div>
+</section>
