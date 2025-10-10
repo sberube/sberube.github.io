@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://devbites.info/", // replace this with your deployed domain
   author: "Simon Berube",
   profile: "https://linkedin.com/simonberube",
-  desc: "News & deep dives on real-world .NET engineering: performance, resilience, DevOps, infrastructure as code, architecture, delivery craft.",
+  desc: "Practical insights on building reliable, cloud-native systems with .NET, Azure, and modern distributed architectures.",
   title: "devbites.info",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
